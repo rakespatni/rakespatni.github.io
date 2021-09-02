@@ -1,5 +1,11 @@
 <html>
-<b>My bot</b>
+<b>My Portal</b>
+<form>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname">
+</form>
 <style type='text/css'>
 	.embeddedServiceHelpButton .helpButton .uiButton {
 		background-color: #DA652F;
@@ -13,7 +19,8 @@
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
 	var initESW = function(gslbBaseURL) {
-		varFName = 'LNAME123';
+		varFName = 'Roger';
+		varLName = 'Federer';
 		embedded_svc.settings.displayHelpButton = true; //Or false
 		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 
@@ -49,7 +56,7 @@
                                                       },{
                                                       "label":"Last Name",
                                                       "transcriptFields": ["Last_Name__c"],
-							      "value":'RP'
+							      "value":varLName
                                                       }
         	];
 		embedded_svc.init(
