@@ -1,68 +1,55 @@
-<html>
-  <style type='text/css'>
-	.embeddedServiceHelpButton .helpButton .uiButton {
-		background-color: #005290;
-		font-family: "Arial", sans-serif;
-	}
-	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-		outline: 1px solid #005290;
-	}
-    .embeddedServiceLiveAgentStateChat .messageArea.smoothScroll{
-	overflow-y:scroll;
-}
-</style>
-  <body>test</body>
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-<script type='text/javascript'>
-	var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true; //Or false
-		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-		embedded_svc.settings.entryFeature = 'LiveAgent';
-		embedded_svc.settings.extraPrechatFormDetails = [{
-                                                          "label":"First Name",
-                                                          "transcriptFields": ["DBot__First_Name__c"],
-							"value":"DbtUsr"
-                                                          },{
-                                                          "label":"Last Name",
-                                                          "transcriptFields": ["DBot__Last_Name__c"]
-                                                          },{
-                                                      "label":"Email",
-                                                      "transcriptFields": ["DBot__Email__c"]
-                                                      }];
-		embedded_svc.init(
-			'https://vassistpackage-dev-ed.my.salesforce.com',
-			'https://vassistpackage-developer-edition.na111.force.com/DbotDemoSite',
-			gslbBaseURL,
-			'00D3h000003UvAI',
-			'DBot__FSI',
-			{
-				baseLiveAgentContentURL: 'https://c.la4-c2-ph2.salesforceliveagent.com/content',
-				deploymentId: '5723h000000DBJu',
-				buttonId: '5733h000000ksJJ',
-				baseLiveAgentURL: 'https://d.la4-c2-ph2.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'DBot__FSI',
-				isOfflineSupportEnabled: false
-			}
-		);
-	};
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+     <script type="text/javascript" src="https://einstein-cdn-dev.pfizer.com/einstein-sdk/ritle/script/salesforceEmbeddedService.min.js"></script>
+     <!--<script type="text/javascript" defer src="https://einstein-cdn-dev.pfizer.com/einstein-sdk/ritle/script/ritleEinsteinBot.js"></script>
+    
+	 
+     <script src="https://widget.doctor.com/directory_v2/widget_app.js" id="directory-widget" defer=""></script>
+     <link id="widget-css" type="text/css" rel="stylesheet" href="https://widget.doctor.com/directory_v2/css/app.css"/>
+	 <script src="https://einstein-cdn-dev.pfizer.com/einstein-sdk/vyndamax/script/vyndamaxCustom-Styling.js"></script>
+	 
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	 <link rel="stylesheet" href="https://einstein-cdn-dev.pfizer.com/einstein-sdk/ritle/style/ritleEinsteinBot.css"/>-->
+	 <script>
+	 var initESW = function(gslbBaseURL) {
+        embedded_svc.settings.displayHelpButton = false; //Or false
+        embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US 1'
 
-	if (!window.embedded_svc) {
-		var s = document.createElement('script');
-		s.setAttribute('src', 'https://vassistpackage-dev-ed.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-		s.onload = function() {
-			initESW(null);
-		};
-		document.body.appendChild(s);
-	} else {
-		initESW('https://service.force.com');
-	}
-    window.addEventListener("message", receiveMessage, false);
-function receiveMessage(event) {
-    var payload = event.data;
-    if(payload && payload.type === "chasitor.sendMessage") {
-        embedded_svc.postMessage("chasitor.sendMessage", payload.message);
+        embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+        embedded_svc.settings.entryFeature = 'LiveAgent';
+
+        embedded_svc.init(
+            'https://pfizerpatientservices--pbotsdev.sandbox.my.salesforce.com',
+            'https://pfizerpatientservices--pbotsdev.sandbox.my.salesforce-sites.com/liveAgentSetupFlow',
+            gslbBaseURL,
+            '00D7X0000003HM2',
+            'Ritle_Group',
+            {
+                baseLiveAgentContentURL: 'https://c.la2-c1cs-ia5.salesforceliveagent.com/content',
+                deploymentId: '5725Y000000tUAT',
+                buttonId: '5737X0000008RKa',
+                baseLiveAgentURL: 'https://d.la2-c1cs-ia5.salesforceliveagent.com/chat',
+                eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I7X00000000NZUAY_1874fdb1beb',
+                isOfflineSupportEnabled: false
+            }
+        );
+    };
+
+    if (!window.embedded_svc) {
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://pfizerpatientservices--pbotsdev.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
+            setTimeout(function(){ initESW(null);},500);
+        };
+        document.body.appendChild(s);
+    } else {
+        setTimeout(function(){initESW('https://service.force.com');},500);
     }
-};
-</script>
+	</script>
+     
+ </head>
+ <body>
+    <button class="chatbotStickyIcon" onclick="showEmbeddedDiv(this)"></button>
+ </body>
 </html>
